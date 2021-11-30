@@ -1,7 +1,7 @@
 name: Changelog & release
 
 runs:
-  using: "node12"
+  using: "composite"
   steps:
       #- name: Checkout
       #- uses: actions/checkout@v2
