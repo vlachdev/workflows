@@ -9,6 +9,9 @@ runs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
+      - name: ls
+        shell: bash
+        run: ls
       - name: package
         shell: bash
         run: |
@@ -51,6 +54,9 @@ runs:
                 echo '}'
             } >> package.json
           fi
+      - name: ls
+        shell: bash
+        run: ls
       - name: NPM
         shell: bash
         run: npm i
