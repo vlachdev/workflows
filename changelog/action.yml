@@ -9,9 +9,6 @@ runs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - name: ls
-        shell: bash
-        run: ls
       - name: package
         shell: bash
         run: |
@@ -21,24 +18,28 @@ runs:
                 echo '  "dependencies": {'
                 echo '    "semantic-release": "^18.0.1",'
                 echo '    "conventional-changelog-conventionalcommits": "latest"'
-                echo '  },'
-                echo '  "release": {'
-                echo '    "preset": "conventionalcommits",'
-                echo '    "presetConfig": {'
-                echo '        "types": [{ "type": "feat", "section": "🚀 Features" }]'
-                echo '     },'
-                echo '    "plugins": ['
-                echo '      "@semantic-release/commit-analyzer",'
-                echo '      "@semantic-release/release-notes-generator",'
-                echo '      "@semantic-release/github"'
-                echo '    ]'
                 echo '  }'
                 echo '}'
             } >> package.json
           fi
-      - name: ls
+      - name: releaserc
         shell: bash
-        run: ls
+        run: |
+          if [[ ! -f .releaserc ]]; then
+            {
+                echo '{'
+                echo '  "preset": "conventionalcommits",'
+                echo '  "presetConfig": {'
+                echo '      "types": [{ "type": "feat", "section": "🚀 Features" }]'
+                echo '   },'
+                echo '  "plugins": ['
+                echo '    "@semantic-release/commit-analyzer",'
+                echo '    "@semantic-release/release-notes-generator",'
+                echo '    "@semantic-release/github"'
+                echo '  ]'
+                echo '}'
+            } >> .releaserc
+          fi
       - name: NPM
         shell: bash
         run: npm i
