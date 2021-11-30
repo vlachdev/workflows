@@ -14,12 +14,7 @@ runs:
         run: |
           if [[ ! -f package.json ]]; then
             {
-                echo '{'
-                echo '  "dependencies": {'
-                echo '    "semantic-release": "^18.0.1",'
-                echo '    "conventional-changelog-conventionalcommits": "latest"'
-                echo '  }'
-                echo '}'
+                echo '{}'
             } >> package.json
           fi
       - name: releaserc
@@ -42,7 +37,7 @@ runs:
           fi
       - name: NPM
         shell: bash
-        run: npm i
+        run: npm i semantic-release@18.0.1 conventional-changelog-conventionalcommits
       - name: Semantic Release
         shell: bash
         run: npx semantic-release
