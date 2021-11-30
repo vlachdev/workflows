@@ -1,0 +1,16 @@
+name: Changelog & release
+
+runs:
+  using: "node12"
+  steps:
+      - name: Checkout
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+      - name: NPM
+        run: npm i
+      - name: Semantic Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
