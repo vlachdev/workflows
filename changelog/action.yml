@@ -10,8 +10,10 @@ runs:
         with:
           node-version: "14"
       - name: NPM
+        shell: bash
         run: npm i
       - name: Semantic Release
+        shell: bash
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
