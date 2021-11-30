@@ -9,6 +9,48 @@ runs:
         uses: actions/setup-node@v1
         with:
           node-version: "14"
+      - name: package
+        shell: bash
+        run: |
+          if [[ ! -f package.json ]]; then
+            {
+                echo '{'
+                echo '  "name": "flowtest",'
+                echo '  "version": "0.0.0-development",'
+                echo '  "description": "Nice",'
+                echo '  "main": "index.js",'
+                echo '  "scripts": {'
+                echo '    "test": "echo \"Error: no test specified\" && exit 1",'
+                echo '    "semantic-release": "semantic-release"'
+                echo '  },'
+                echo '  "repository": {'
+                echo '    "type": "git",'
+                echo '    "url": "https://github.com/cipami/flowtest.git"'
+                echo '  },'
+                echo '  "author": "",'
+                echo '  "license": "ISC",'
+                echo '  "bugs": {'
+                echo '    "url": "https://github.com/cipami/flowtest/issues"'
+                echo '  },'
+                echo '  "homepage": "https://github.com/cipami/flowtest#readme",'
+                echo '  "dependencies": {'
+                echo '    "semantic-release": "^18.0.1",'
+                echo '    "conventional-changelog-conventionalcommits": "latest"'
+                echo '  },'
+                echo '  "release": {'
+                echo '    "preset": "conventionalcommits",'
+                echo '    "presetConfig": {'
+                echo '        "types": [{ "type": "feat", "section": "🚀 Features" }]'
+                echo '     },'
+                echo '    "plugins": ['
+                echo '      "@semantic-release/commit-analyzer",'
+                echo '      "@semantic-release/release-notes-generator",'
+                echo '      "@semantic-release/github"'
+                echo '    ]'
+                echo '  }'
+                echo '}'
+            } >> package.json
+          fi
       - name: NPM
         shell: bash
         run: npm i
