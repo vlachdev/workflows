@@ -38,12 +38,12 @@ runs:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-semantic
+          key: ${{ runner.os }}-semantic-cache
       - name: NPM
         shell: bash
         run: npm i semantic-release@18.0.1 conventional-changelog-conventionalcommits@4.6.1
       - name: Semantic Release
         shell: bash
-        run: npx semantic-release
+        run: npm run semantic-release
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
