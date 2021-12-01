@@ -26,6 +26,8 @@ runs:
                 echo '  "preset": "conventionalcommits",'
                 echo '  "presetConfig": {'
                 echo '      "types": [{ "type": "feat", "section": "🚀 Features" }]'
+                echo '      "types": [{ "type": "fix", "section": "🐛 Bug Fixes" }]'
+                echo '      "types": [{ "type": "chore", "section": "🧽 Chores" }]'
                 echo '   },'
                 echo '  "plugins": ['
                 echo '    "@semantic-release/commit-analyzer",'
