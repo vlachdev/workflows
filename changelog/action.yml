@@ -25,7 +25,7 @@ runs:
                 echo '{'
                 echo '  "preset": "conventionalcommits",'
                 echo '  "presetConfig": {'
-                echo '      "types": [
+                echo '      "types": ['
                 echo '         { "type": "feat", "section": "🚀 Features" },'
                 echo '         { "type": "fix", "section": "🐛 Bug Fixes" },'
                 echo '         { "type": "chore", "section": "🧽 Chores" }'
