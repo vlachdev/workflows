@@ -3,12 +3,6 @@ name: Changelog & release
 runs:
   using: "composite"
   steps:
-      #- name: Checkout
-      #- uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "14"
       - name: package
         shell: bash
         run: |
@@ -38,9 +32,16 @@ runs:
                 echo '}'
             } >> .releaserc
           fi
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-semantic
       - name: NPM
         shell: bash
-        run: npm i semantic-release@18.0.1 conventional-changelog-conventionalcommits
+        run: npm i semantic-release@18.0.1 conventional-changelog-conventionalcommits@4.6.1
       - name: Semantic Release
         shell: bash
         run: npx semantic-release
